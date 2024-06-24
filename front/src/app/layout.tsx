@@ -18,7 +18,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         <nav>
-          <h1>Directes en català</h1>
+          <h1 className="ml-4">Directes en català</h1>
         </nav>
         {children}
         </body>

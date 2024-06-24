@@ -1,11 +1,14 @@
 import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card"
+  Card2,
+  CardContent2,
+  CardDescription2,
+  CardFooter2,
+  CardHeader2,
+  CardTitle2,
+  CardImageWithOverlay
+} from "@/components/ui/card2"
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
+import { Badge } from "@/components/ui/badge"
 
 /* Interface per a :
 
@@ -31,24 +34,55 @@ interface Stream {
   }[];
 }
 
+async function obteLlista(): Promise<Stream[]> {
+  const result = await fetch(
+    'http://localhost:8080/llista',
+    { cache: "no-store" }
+  );
+  const data = await result.json()
 
-export default function Home() {
+  //await new Promise(resolve => setTimeout(resolve, 3000))
+
+  return data.data
+}
+
+
+export default async function Home() {
+
+  const llista = await obteLlista()
+
+  const badgeContainerStyle = {
+    maxHeight: '3rem',
+    overflow: 'hidden',
+  };
+
   return (
-    <main>
-      hola
-      <Card>
-        <CardHeader>
-          <CardTitle>Card Title</CardTitle>
-          <CardDescription>Card Description</CardDescription>
-        </CardHeader>
-        <CardContent>
-          <p>Card Content</p>
-        </CardContent>
-        <CardFooter>
-          <p>Card Footer</p>
-        </CardFooter>
-      </Card>
-
+    <main className="px-4 mx-auto my-12 max-w-6xl">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
+        {llista.map((stream) => (
+          <a href={"https://www.twitch.tv/" + stream.broadcaster.login} key={stream.broadcaster.login} rel="noopener noreferrer">
+          <Card2 className="flex flex-col justify-start hover:scale-105 transition">
+            <CardImageWithOverlay src={stream.previewImageURL} alt="Descripció de la imatge" viewers={stream.viewersCount} />
+            <CardHeader2 className="flex-row gap-4"> {/* Modified className */}
+              <Avatar>
+                <AvatarImage src={stream.broadcaster.profileImageURL} alt={stream.broadcaster.displayName} />
+                <AvatarFallback>{stream.broadcaster.displayName[0]}</AvatarFallback>
+              </Avatar>
+              <div style={{ marginTop: 0 }}>
+                <CardTitle2>{stream.title}</CardTitle2>
+                <CardDescription2>{stream.broadcaster.displayName}</CardDescription2>
+                <CardDescription2>{stream.game.displayName}</CardDescription2>
+                <div style={badgeContainerStyle}>
+                  {stream.FreeformTags.map((tag) => (
+                    <Badge variant="outline" key={tag.name} className="mr-2 mb-0">{ tag.name }</Badge>
+                  ))}
+                </div>
+              </div>
+            </CardHeader2>
+          </Card2>
+          </a>
+        ))}
+      </div>
     </main>
   );
 }
