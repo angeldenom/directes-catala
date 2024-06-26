@@ -17,7 +17,7 @@ export default function SkeletonCard() {
             <Skeleton className="w-full aspect-[55/31] rounded-none" />
             <CardHeader2 className="flex-row gap-4"> {/* Modified className */}
               <Skeleton className="w-[40px] h-[40px] rounded-full"/>
-              <Skeleton className="h-[132px] flex-grow mt-4" />
+              <Skeleton className="h-[130px] flex-grow" />
             </CardHeader2>
           </Card2>
     )
