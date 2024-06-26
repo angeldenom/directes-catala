@@ -10,6 +10,7 @@ import {
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Badge } from "@/components/ui/badge"
 import { ImatgeCarta } from "@/components/ui/imatgeCarta"
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 
 /* Interface per a :
 
@@ -60,6 +61,14 @@ export default async function Home() {
 
   return (
     <main className="px-4 mx-auto my-12 max-w-6xl">
+      <div className="flex items-center justify-center mb-6">
+        <Tabs defaultValue="account" className="w-[400px]">
+          <TabsList className="grid w-full grid-cols-2">
+            <TabsTrigger value="account">Veure a twitch.tv</TabsTrigger>
+            <TabsTrigger value="password">Veure aquí</TabsTrigger>
+          </TabsList>
+        </Tabs>
+      </div>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
         {llista.map((stream) => (
           <a href={"https://www.twitch.tv/" + stream.broadcaster.login} key={stream.broadcaster.login} rel="noopener noreferrer">
