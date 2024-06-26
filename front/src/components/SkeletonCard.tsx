@@ -14,10 +14,10 @@ import {
 export default function SkeletonCard() {
     return (
         <Card2 className="flex flex-col justify-start hover:scale-105 transition">
-            <Skeleton className="w-full aspect-[55/31]" />
+            <Skeleton className="w-full aspect-[55/31] rounded-none" />
             <CardHeader2 className="flex-row gap-4"> {/* Modified className */}
-              <Skeleton className="w-12 h-12 rounded-full"/>
-              <Skeleton className="h-32 flex-grow mt-4" />
+              <Skeleton className="w-[40px] h-[40px] rounded-full"/>
+              <Skeleton className="h-[132px] flex-grow mt-4" />
             </CardHeader2>
           </Card2>
     )

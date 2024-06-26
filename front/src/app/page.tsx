@@ -10,7 +10,7 @@ import {
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Badge } from "@/components/ui/badge"
 import { ImatgeCarta } from "@/components/ui/imatgeCarta"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import { SwitchObrir } from "@/components/switchObrir"
 
 /* Interface per a :
 
@@ -62,19 +62,15 @@ export default async function Home() {
   return (
     <main className="px-4 mx-auto my-12 max-w-6xl">
       <div className="flex items-center justify-center mb-6">
-        <Tabs defaultValue="account" className="w-[400px]">
-          <TabsList className="grid w-full grid-cols-2">
-            <TabsTrigger value="account">Veure a twitch.tv</TabsTrigger>
-            <TabsTrigger value="password">Veure aquí</TabsTrigger>
-          </TabsList>
-        </Tabs>
+        <SwitchObrir />
       </div>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
         {llista.map((stream) => (
-          <a href={"https://www.twitch.tv/" + stream.broadcaster.login} key={stream.broadcaster.login} rel="noopener noreferrer">
+          <div key={stream.broadcaster.login}>
+          <a href={"https://www.twitch.tv/" + stream.broadcaster.login} rel="noopener noreferrer">
           <Card2 className="flex flex-col justify-start hover:scale-105 transition">
             <ImatgeCarta src={stream.previewImageURL} alt="Descripció de la imatge" viewers={stream.viewersCount} />
-            <CardHeader2 className="flex-row gap-4"> {/* Modified className */}
+            <CardHeader2 className="flex-row gap-4">
               <Avatar>
                 <AvatarImage src={stream.broadcaster.profileImageURL} alt={stream.broadcaster.displayName} />
                 <AvatarFallback>{stream.broadcaster.displayName[0]}</AvatarFallback>
@@ -91,7 +87,7 @@ export default async function Home() {
               </div>
             </CardHeader2>
           </Card2>
-          </a>
+          </a></div>
         ))}
       </div>
     </main>

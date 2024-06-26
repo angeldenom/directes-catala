@@ -23,7 +23,7 @@ const ImatgeCarta = React.forwardRef<
 
   return (
     <div ref={ref} className={cn("relative", className)}>
-      {!imatgeCarregada && <Skeleton className="w-full aspect-[55/31]" />}
+      {!imatgeCarregada && <Skeleton className="w-full aspect-[55/31] rounded-none" />}
       <img
         src={src}
         alt={alt}
