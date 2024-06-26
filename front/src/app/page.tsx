@@ -5,10 +5,11 @@ import {
   CardFooter2,
   CardHeader2,
   CardTitle2,
-  CardImageWithOverlay
+  CardImageWithOverlay,
 } from "@/components/ui/card2"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Badge } from "@/components/ui/badge"
+import { ImatgeCarta } from "@/components/ui/imatgeCarta"
 
 /* Interface per a :
 
@@ -36,7 +37,8 @@ interface Stream {
 
 async function obteLlista(): Promise<Stream[]> {
   const result = await fetch(
-    'http://api:8080/llista',
+    //'http://api:8080/llista',
+    'http://localhost:8080/llista',
     { cache: "no-store" }
   );
   const data = await result.json()
@@ -62,7 +64,7 @@ export default async function Home() {
         {llista.map((stream) => (
           <a href={"https://www.twitch.tv/" + stream.broadcaster.login} key={stream.broadcaster.login} rel="noopener noreferrer">
           <Card2 className="flex flex-col justify-start hover:scale-105 transition">
-            <CardImageWithOverlay src={stream.previewImageURL} alt="Descripció de la imatge" viewers={stream.viewersCount} />
+            <ImatgeCarta src={stream.previewImageURL} alt="Descripció de la imatge" viewers={stream.viewersCount} />
             <CardHeader2 className="flex-row gap-4"> {/* Modified className */}
               <Avatar>
                 <AvatarImage src={stream.broadcaster.profileImageURL} alt={stream.broadcaster.displayName} />
