@@ -23,23 +23,19 @@ const ImatgeCarta = React.forwardRef<
 
   return (
     <div ref={ref} className={cn("relative", className)}>
-      {!imatgeCarregada && <Skeleton className="h-48 flex-grow" />}
+      {!imatgeCarregada && <Skeleton className="w-full aspect-[55/31]" />}
       <img
         src={src}
         alt={alt}
         className={`w-full h-auto ${imatgeCarregada ? 'block' : 'hidden'}`}
         onLoad={ () => {setImatgeCarregada(true); console.log("Imatge carregada")}}
       />
-      {imatgeCarregada && (
-        <>
           <div className="absolute bottom-2 left-2 bg-black bg-opacity-60 text-white text-sm px-1.5 py-0.5 rounded-sm">
             {viewers === 1 ? "1 espectador" : `${viewers} espectadors`}
           </div>
           <div className="absolute top-2 left-2 bg-red-600 text-white text-sm px-1.5 py-0.5 rounded-sm">
             DIRECTE
           </div>
-        </>
-      )}
     </div>
   );
 });

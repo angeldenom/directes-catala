@@ -55,7 +55,7 @@ type TwitchNode struct {
 
 
 func GetTwitchStreams(w http.ResponseWriter, r *http.Request) {
-    limit := 20
+    limit := 21
     cursor := ""
 
     requestData := TwitchRequest{
