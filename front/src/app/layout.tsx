@@ -9,7 +9,7 @@ const inter = Inter({ subsets: ["latin"] });
 export const metadata: Metadata = {
   title: "Directes en català",
   description: "El portal dels directes en català.",
-  metadataBase: new URL('http://localhost:3000'),
+  metadataBase: new URL('https://twitch.cat'),
   keywords: ["twitch en català", 'directes', 'twitch', 'català', 'Catalunya', "creadors catalans"],
   openGraph: {
     title: "Directes en català",
