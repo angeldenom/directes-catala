@@ -38,8 +38,8 @@ interface Stream {
 
 async function obteLlista(): Promise<Stream[]> {
   const result = await fetch(
-    //'http://api:8080/llista',
-    'http://localhost:8080/llista',
+    'http://api:8080/llista',
+    //'http://localhost:8080/llista',
     { cache: "no-store" }
   );
   const data = await result.json()
