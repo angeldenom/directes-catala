@@ -31,13 +31,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>
       <Script
           src="https://cloud.umami.is/script.js" 
           strategy="beforeInteractive"
           data-website-id="95089e77-68e0-404d-bf4e-dbb92c9d4185" 
           defer
         />
+      <body className={inter.className}>
         <ThemeProvider
               attribute="class"
               defaultTheme="system"
