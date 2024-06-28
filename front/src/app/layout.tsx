@@ -4,6 +4,7 @@ import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider"
 import { ModeToggle } from "@/components/modeToggle"
 import Head from "next/head";
+import Script from "next/script";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -30,7 +31,14 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-    <Head><script defer src="https://cloud.umami.is/script.js" data-website-id="95089e77-68e0-404d-bf4e-dbb92c9d4185"></script></Head>
+    <Head>
+      <Script 
+          src="https://cloud.umami.is/script.js" 
+          strategy="afterInteractive" 
+          data-website-id="95089e77-68e0-404d-bf4e-dbb92c9d4185" 
+          defer
+        />
+    </Head>
       <body className={inter.className}>
         <ThemeProvider
               attribute="class"
