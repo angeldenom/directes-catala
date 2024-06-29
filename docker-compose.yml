@@ -7,7 +7,7 @@ services:
     ports:
       - "8080:8080"
     networks:
-      - mynetwork
+      - la-xarxa
 
   front:
     build:
@@ -17,21 +17,8 @@ services:
     depends_on:
       - api
     networks:
-      - mynetwork
-
-  nginx:
-    image: nginx:latest
-    ports:
-      - "80:80"
-      - "443:443"
-    volumes:
-      - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
-      - ./nginx/certificats:/etc/nginx/certs:ro
-    depends_on:
-      - api
-      - front
-    networks:
-      - mynetwork
+      - la-xarxa
 
 networks:
-  mynetwork:
+  la-xarxa:
+    external: true
