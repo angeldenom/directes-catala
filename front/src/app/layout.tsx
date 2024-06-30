@@ -3,8 +3,8 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider"
 import { ModeToggle } from "@/components/modeToggle"
-import Head from "next/head";
 import Script from "next/script";
+import Link from "next/link";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -31,12 +31,14 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <Script
+      <head>
+        <Script
           src="https://cloud.umami.is/script.js" 
           strategy="beforeInteractive"
           data-website-id="95089e77-68e0-404d-bf4e-dbb92c9d4185" 
           defer
         />
+      </head>     
       <body className={inter.className}>
         <ThemeProvider
               attribute="class"
@@ -50,8 +52,8 @@ export default function RootLayout({
             </nav>
             {children}
             <footer className="max-w-6xl mx-auto my-12">
-              <div className="flex items-center justify-center mb-6">
-              <p>2024 Directes en català</p>
+              <div className="flex flex-col items-center justify-center mb-6">
+                <Link href="https://cloud.umami.is/share/qF9e14VJ27SQRnMw/twitch.cat">Estadístiques</Link>
               </div>
             </footer>
           </ThemeProvider>
