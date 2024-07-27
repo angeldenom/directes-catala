@@ -47,13 +47,16 @@ export default function RootLayout({
               disableTransitionOnChange
             >
             <nav className="flex justify-between">
-              <h1 className="ml-4">Directes en català</h1>
+              <Link href="/"><h1 className="ml-4">Directes en català</h1></Link>
               <div className="mr-4 ml-2"><ModeToggle /></div>
             </nav>
             {children}
             <footer className="max-w-6xl mx-auto my-12">
               <div className="flex flex-col items-center justify-center mb-6">
+                <Link href="/missió">Missió</Link>
+                <Link href="/codi-obert">Codi Obert</Link>
                 <Link href="https://cloud.umami.is/share/qF9e14VJ27SQRnMw/twitch.cat">Estadístiques</Link>
+                <Link href="/contacte">Contacte</Link>
               </div>
             </footer>
           </ThemeProvider>
