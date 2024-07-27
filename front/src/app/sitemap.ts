@@ -6,6 +6,18 @@ export default function sitemap(): MetadataRoute.Sitemap {
     {
       url: baseUrl,
       lastModified: new Date(),
+    },
+    {
+      url: `${baseUrl}/missi%C3%B3`,
+      lastModified: new Date(),
+    },
+    {
+      url: `${baseUrl}/codi-obert`,
+      lastModified: new Date(),
+    },
+    {
+      url: `${baseUrl}/contacte`,
+      lastModified: new Date(),
     }
   ]
 }
