@@ -77,7 +77,7 @@ export default async function Home() {
                 <CardTitle2>{stream.title}</CardTitle2>
                 <CardDescription2>{stream.broadcaster.displayName}</CardDescription2>
                 <CardDescription2>{stream.game.displayName}</CardDescription2>
-                <div style={badgeContainerStyle}>
+                <div className="mb-0.5" style={badgeContainerStyle}>
                   {stream.FreeformTags.map((tag) => (
                     <Badge variant="outline" key={tag.name} className="mr-2 mb-0">{ tag.name }</Badge>
                   ))}
