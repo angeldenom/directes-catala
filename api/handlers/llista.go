@@ -53,9 +53,43 @@ type TwitchNode struct {
 	Tags          *[]FreeformTag `json:"FreeformTags"`
 }
 
+// Funció per modificar el DisplayName dels jocs
+func modifyGameDisplayNames(customResponse []TwitchNode, nameMappings map[string]string) {
+    for i := range customResponse {
+        game := &customResponse[i].Game
+        if game.DisplayName != nil {
+            if newName, exists := nameMappings[*game.DisplayName]; exists {
+                game.DisplayName = &newName
+            }
+        }
+    }
+}
+
+// Funció per eliminar els FreeformTag dels Tags
+func removeTags(customResponse []TwitchNode, tagsToRemove []string) {
+    tagsToRemoveMap := make(map[string]struct{})
+    for _, tag := range tagsToRemove {
+        tagsToRemoveMap[tag] = struct{}{}
+    }
+
+    for i := range customResponse {
+        if customResponse[i].Tags != nil {
+            filteredTags := []FreeformTag{}
+            for _, tag := range *customResponse[i].Tags {
+                if tag.Name != nil {
+                    if _, exists := tagsToRemoveMap[*tag.Name]; !exists {
+                        filteredTags = append(filteredTags, tag)
+                    }
+                }
+            }
+            customResponse[i].Tags = &filteredTags
+        }
+    }
+}
+
 
 func GetTwitchStreams(w http.ResponseWriter, r *http.Request) {
-    limit := 21
+    limit := 21 // Aquí el límit de streams a retornar
     cursor := ""
 
     requestData := TwitchRequest{
@@ -131,6 +165,38 @@ func GetTwitchStreams(w http.ResponseWriter, r *http.Request) {
     for _, edge := range twitchResp.Data.Streams.Edges {
         customResponse = append(customResponse, edge.Node)
     }
+
+    // Defineix la llista de noms antics i nous
+    nameMappings := map[string]string{
+        "Just Chatting": "Xerrant",
+        "Music": "Música",
+        "Special Events": "Esdeveniments especials",
+        "Sports": "Esports",
+        "Talk Shows & Podcasts": "Xerrades i pòdcasts",
+        "Software and Game Development": "Desenvolupament de programari i jocs",
+        "Always On": "Sempre actiu",
+        "Food & Drink": "Menjar i beguda",
+        "Chess": "Escacs",
+        "Pools, Hot Tubs, and Beaches": "Piscines, jacuzzis i platges",
+        "Poker": "Pòquer",
+        "Games + Demos": "Jocs + Demos",
+        "Animals, Aquariums, and Zoos": "Animals, aquaris i zoològics",
+        "Politics": "Política",
+        "Fitness & Health": "Fitnes i salut",
+        "Board Games": "Jocs de taula",
+        "Makers & Crafting": "Manualitats i artesania",
+        "Science & Technology": "Ciència i tecnologia",
+        "Beauty & Body Art": "Bellesa i art corporal",
+    }
+
+    // Modifica els DisplayName dels jocs
+    modifyGameDisplayNames(customResponse, nameMappings)
+
+    // Defineix la llista de tags a eliminar
+    tagsToRemove := []string{"Català", "català", "Catala", "catala", "Catalan", "catalan", "Catalán", "catalán", "Catalunya", "catalunya", "Catalonia", "catalonia", "Cataluña", "cataluña"}
+
+    // Elimina els FreeformTag dels Tags
+    removeTags(customResponse, tagsToRemove)
 
     // Creem una resposta en el format desitjat
     jsonResponse := map[string]interface{}{
