@@ -54,7 +54,7 @@ export default async function Home() {
     const llista = await obteLlista()
 
     const badgeContainerStyle = {
-        maxHeight: 'calc(3rem + 0.1rem)',
+        maxHeight: 'calc(3rem + 0.2rem)',
         overflow: 'hidden',
     };
 
