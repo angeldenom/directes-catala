@@ -54,7 +54,7 @@ export default async function Home() {
     const llista = await obteLlista()
 
     const badgeContainerStyle = {
-        maxHeight: '3rem',
+        maxHeight: 'calc(3rem + 0.1rem)',
         overflow: 'hidden',
     };
 
@@ -68,7 +68,7 @@ export default async function Home() {
           <Enllac streamer={stream.broadcaster.login}>
           <Card2 className="flex flex-col justify-start hover:scale-105 transition">
             <ImatgeCarta src={stream.previewImageURL} alt="Descripció de la imatge" viewers={stream.viewersCount} />
-            <CardHeader2 className="flex-row gap-4 mb-0.5">
+            <CardHeader2 className="flex-row gap-4">
               <Avatar>
                 <AvatarImage src={stream.broadcaster.profileImageURL} alt={stream.broadcaster.displayName} />
                 <AvatarFallback>{stream.broadcaster.displayName[0]}</AvatarFallback>
