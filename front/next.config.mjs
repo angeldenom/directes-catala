@@ -2,7 +2,13 @@
 const nextConfig = {
     images: {
       dangerouslyAllowSVG: true,
-      domains: ['github-readme-stats.vercel.app'],
+      remotePatterns: [
+        {
+            protocol: 'https',
+            hostname: 'github-readme-stats.vercel.app',
+            port: '',
+        },
+    ],
     },
   };
 
