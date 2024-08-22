@@ -84,3 +84,7 @@
   h1 {
     @apply scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl;
   }
+
+  .badge-container .badge:nth-child(n+6) {
+    display: none;
+  }

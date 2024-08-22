@@ -53,11 +53,6 @@ export default async function Home() {
 
     const llista = await obteLlista()
 
-    const badgeContainerStyle = {
-        maxHeight: 'calc(3rem + 0.2rem)',
-        overflow: 'hidden',
-    };
-
   return (
     <main className="px-4 mx-auto my-12 max-w-6xl">
         <TabProvider>
@@ -77,9 +72,9 @@ export default async function Home() {
                 <CardTitle2>{stream.title}</CardTitle2>
                 <CardDescription2>{stream.broadcaster.displayName}</CardDescription2>
                 <CardDescription2>{stream.game.displayName}</CardDescription2>
-                <div className="mb-0" style={badgeContainerStyle}>
-                  {stream.FreeformTags.map((tag) => (
-                    <Badge variant="outline" key={tag.name} className="mr-2 mb-0">{ tag.name }</Badge>
+                <div className="mb-0 badge-container">
+                  {stream.FreeformTags.map((tag, index) => (
+                    <Badge variant="outline" key={tag.name} className="mr-2 mb-0 badge">{ tag.name }</Badge>
                   ))}
                 </div>
               </div>
