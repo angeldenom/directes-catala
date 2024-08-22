@@ -68,7 +68,7 @@ export default async function Home() {
           <Enllac streamer={stream.broadcaster.login}>
           <Card2 className="flex flex-col justify-start hover:scale-105 transition">
             <ImatgeCarta src={stream.previewImageURL} alt="Descripció de la imatge" viewers={stream.viewersCount} />
-            <CardHeader2 className="flex-row gap-4">
+            <CardHeader2 className="flex-row gap-4 mb-0.5">
               <Avatar>
                 <AvatarImage src={stream.broadcaster.profileImageURL} alt={stream.broadcaster.displayName} />
                 <AvatarFallback>{stream.broadcaster.displayName[0]}</AvatarFallback>
@@ -77,9 +77,9 @@ export default async function Home() {
                 <CardTitle2>{stream.title}</CardTitle2>
                 <CardDescription2>{stream.broadcaster.displayName}</CardDescription2>
                 <CardDescription2>{stream.game.displayName}</CardDescription2>
-                <div className="mb-0.5" style={badgeContainerStyle}>
+                <div className="mb-0" style={badgeContainerStyle}>
                   {stream.FreeformTags.map((tag) => (
-                    <Badge variant="outline" key={tag.name} className="mr-2 mb-0.5">{ tag.name }</Badge>
+                    <Badge variant="outline" key={tag.name} className="mr-2 mb-0">{ tag.name }</Badge>
                   ))}
                 </div>
               </div>
