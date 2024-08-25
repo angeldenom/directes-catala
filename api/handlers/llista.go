@@ -5,7 +5,9 @@ import (
     "encoding/json"
     "io/ioutil"
     "net/http"
-	//"log" // Per a fer console.log
+	"log" // Per a fer console.log
+    "bufio"
+    "os"
 )
 
 const (
@@ -87,6 +89,26 @@ func removeTags(customResponse []TwitchNode, tagsToRemove []string) {
     }
 }
 
+// Funció per llegir la llista eliminats des d'un fitxer
+func readLlistaEliminats(filename string) ([]string, error) {
+    file, err := os.Open(filename)
+    if err != nil {
+        return nil, err
+    }
+    defer file.Close()
+
+    var llistaEliminats []string
+    scanner := bufio.NewScanner(file)
+    for scanner.Scan() {
+        llistaEliminats = append(llistaEliminats, scanner.Text())
+    }
+
+    if err := scanner.Err(); err != nil {
+        return nil, err
+    }
+
+    return llistaEliminats, nil
+}
 
 func GetTwitchStreams(w http.ResponseWriter, r *http.Request) {
     limit := 21 // Aquí el límit de streams a retornar
@@ -197,6 +219,27 @@ func GetTwitchStreams(w http.ResponseWriter, r *http.Request) {
 
     // Elimina els FreeformTag dels Tags
     removeTags(customResponse, tagsToRemove)
+
+    // Defineix la llista eliminats de canals
+    llistaEliminats, err := readLlistaEliminats("llista_eliminats.txt")
+    if err != nil {
+        log.Fatalf("Error llegint la llista eliminats: %v", err)
+    }
+
+    // Converteix la llista eliminats en un mapa per a una cerca ràpida
+    llistaEliminatsMap := make(map[string]struct{})
+    for _, login := range llistaEliminats {
+        llistaEliminatsMap[login] = struct{}{}
+    }
+
+    // Filtra els canals que no estan a la llista eliminats
+    filteredResponse := customResponse[:0]
+    for _, canal := range customResponse {
+        if _, found := llistaEliminatsMap[canal.Broadcaster.Login]; !found {
+            filteredResponse = append(filteredResponse, canal)
+        }
+    }
+    customResponse = filteredResponse
 
     // Creem una resposta en el format desitjat
     jsonResponse := map[string]interface{}{
