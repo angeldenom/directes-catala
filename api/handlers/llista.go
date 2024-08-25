@@ -241,10 +241,37 @@ func GetTwitchStreams(w http.ResponseWriter, r *http.Request) {
     }
     customResponse = filteredResponse
 
+    // Defineix la llista altres de canals
+    llistaAltres, err := readLlistaEliminats("llista_altres.txt")
+    if err != nil {
+        log.Fatalf("Error llegint la llista altres: %v", err)
+    }
+
+    // Converteix la llista altres en un mapa per a una cerca ràpida
+    llistaAltresMap := make(map[string]struct{})
+    for _, login := range llistaAltres {
+        llistaAltresMap[login] = struct{}{}
+    }
+
+    // Inicialitza la llista de canals altres
+    var customResponse2 []TwitchNode
+
+    // Elimina de la llista de canals els que estan a la llista altres, i afegeix-los a la llista altres
+    altresResponse := customResponse[:0]
+    for _, canal := range customResponse {
+        if _, found := llistaAltresMap[canal.Broadcaster.Login]; found {
+            customResponse2 = append(customResponse2, canal)
+        } else {
+            altresResponse = append(altresResponse, canal)
+        }
+    }
+    customResponse = altresResponse
+
     // Creem una resposta en el format desitjat
     jsonResponse := map[string]interface{}{
         "status": "ok",
         "data":   customResponse,
+        "altres": customResponse2,
     }
 
     // Convertim la resposta a JSON
