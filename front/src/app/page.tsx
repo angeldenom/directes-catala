@@ -33,7 +33,7 @@ interface Stream {
   }[];
   }
   
-  async function obteLlista(): Promise<Stream[]> {
+  async function obteLlista(): Promise<[Stream[], Stream[]]> {
   const result = await fetch(
       'http://api:8080/llista',
       //'http://localhost:8080/llista',
@@ -43,21 +43,8 @@ interface Stream {
   
   //await new Promise(resolve => setTimeout(resolve, 3000))
   
-  return data.data
+  return [data.data, data.altres]
   }
-
-  async function obteLlistaAltres(): Promise<Stream[]> {
-    const result = await fetch(
-        'http://api:8080/llista',
-        //'http://localhost:8080/llista',
-        { cache: "no-store" }
-    );
-    const data = await result.json()
-    
-    //await new Promise(resolve => setTimeout(resolve, 3000))
-    
-    return data.altres
-    }
   
   interface QuadriculaProps {
       atribut: any;
@@ -65,8 +52,7 @@ interface Stream {
 
 export default async function Home() {
 
-    const llista = await obteLlista()
-    const llistaAltres = await obteLlistaAltres()
+    const [llista, llistaAltres] = await obteLlista()
 
   return (
     <main className="px-4 mx-auto my-12 max-w-6xl">
