@@ -14,8 +14,6 @@ interface InfoTooltipProps {
 export default function TooltipAltres({ className, tooltipContent }: InfoTooltipProps) {
   const [isOpen, setIsOpen] = useState(false)
 
-  const handleToggle = () => setIsOpen(!isOpen)
-
   return (
     <TooltipProvider>
       <Tooltip open={isOpen}>
@@ -26,7 +24,6 @@ export default function TooltipAltres({ className, tooltipContent }: InfoTooltip
             className={cn("rounded-full", className)}
             onMouseEnter={() => setIsOpen(true)}
             onMouseLeave={() => setIsOpen(false)}
-            onClick={handleToggle}
             aria-label="More information"
           >
             <InfoIcon className="h-5 w-5" />
