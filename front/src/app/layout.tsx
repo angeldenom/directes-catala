@@ -56,6 +56,7 @@ export default function RootLayout({
                 <Link href="/missió">Missió</Link>
                 <Link href="/codi-obert">Codi Obert</Link>
                 <Link href="https://cloud.umami.is/share/qF9e14VJ27SQRnMw/twitch.cat">Estadístiques</Link>
+                <Link href="/informa">Informa de canal inadequat</Link>
                 <Link href="/contacte">Contacte</Link>
               </div>
             </footer>
