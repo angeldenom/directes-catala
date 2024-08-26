@@ -84,7 +84,7 @@ export default async function Home() {
           </Enllac></div>
         ))}
       </div>
-      <div className="flex items-center mt-10"><h1 className="text-4xl font-bold">Altres</h1><TooltipAltres className="ml-2" tooltipContent="Canals sense interacció real." /></div>
+      <div className="flex items-center mt-10"><h1 className="text-4xl font-bold">Altres</h1><TooltipAltres className="ml-2" tooltipContent="Canals sense interacció" /></div>
       <div className="mt-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
         {llistaAltres.map((stream) => (
           <div key={stream.broadcaster.login}>
