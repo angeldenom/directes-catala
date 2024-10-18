@@ -31,7 +31,7 @@ export default function Error({
   return (
     <div className='flex justify-center items-center min-h-80'>
         <div className='text-center space-y-4'>
-            <p className='text-2xl font-semibold'>No s'ha pogut carregar la <span className='whitespace-nowrap'>informació :(</span></p>
+            <p className='text-2xl font-semibold'>No s’ha pogut carregar la <span className='whitespace-nowrap'>informació :(</span></p>
             <p className='text-xs'>Codi de seguiment: {error.digest}</p>
             <Button
                 onClick={
