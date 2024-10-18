@@ -22,7 +22,7 @@ El codi està penjat a un repositori de GitHub. Qualsevol el pot millorar i penj
 - [x] Traduir el nom d’algunes categories com ara “Just Chatting” o “Sports”.
 - [x] Ocultar etiquetes redundants com serien “Català”, “catalan” o “Catalunya”.
 - [x] Filtre per amagar canals incorrectes i apartar els de poca interacció.
-- [ ] Possibilitat d'intal·lar com a aplicació-web (PWA).
+- [x] Possibilitat d'intal·lar com a aplicació-web (PWA).
 - [ ] Una part que enllaci a altres serveis que recomanen contingut en català.
 - [ ] Una part on descobrir streamers que no estan en directe. Per exemple una llista dels streamers que més creixen.
 - [ ] (No sé si és possible) Que es pugui iniciar sessió i importar les subscripcions, de manera que a la part superior apareguin els canals seguits que estan en directe.
