@@ -120,6 +120,7 @@ func GetTwitchStreams(w http.ResponseWriter, r *http.Request) {
             "imageWidth":         50,
             "includePreviewBlur": false,
             "sortTypeIsRecency":  false,
+            "includeIsDJ":        false,
             "platformType":       "all",
             "limit":              limit,
             "options": map[string]interface{}{
@@ -138,7 +139,7 @@ func GetTwitchStreams(w http.ResponseWriter, r *http.Request) {
         Extensions: map[string]interface{}{
             "persistedQuery": map[string]interface{}{
                 "version":    1,
-                "sha256Hash": "92922d263f6a120a9c28c9f98772be12d25e7f76ebcde22666a8c4195079d4df",
+                "sha256Hash": "75a4899f0a765cc08576125512f710e157b147897c06f96325de72d4c5a64890",
             },
         },
     }

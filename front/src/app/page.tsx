@@ -14,6 +14,7 @@ import { Badge } from "@/components/ui/badge"
 import { ImatgeCarta } from "@/components/ui/imatgeCarta"
 import Enllac from "@/components/enllac";
 import TooltipAltres from "@/components/tooltipAltres";
+import FetchComponent from "@/components/perfil";
 
 interface Stream {
   title: string;
@@ -35,8 +36,8 @@ interface Stream {
   
   async function obteLlista(): Promise<[Stream[], Stream[]]> {
   const result = await fetch(
-      'http://api:8080/llista',
-      //'http://localhost:8080/llista',
+      //'http://api:8080/llista',
+      'http://localhost:8080/llista',
       { cache: "no-store" }
   );
   const data = await result.json()
@@ -58,7 +59,12 @@ export default async function Home() {
     <main className="px-4 mx-auto my-12 max-w-6xl">
         <TabProvider>
           <SwitchObrir />
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
+          <div className="flex items-center mt-10"><h1 className="text-4xl font-bold">Seguits</h1></div>
+          <div className="mt-4">
+            <FetchComponent />
+          </div>
+          <div className="flex items-center mt-10"><h1 className="text-4xl font-bold">Tendència</h1></div>
+          <div className="mt-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
         {llista.map((stream) => (
           <div key={stream.broadcaster.login}>
           <Enllac streamer={stream.broadcaster.login}>
